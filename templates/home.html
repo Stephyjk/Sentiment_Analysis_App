@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body class="d-flex text-center text-white bg-dark">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+      <header class="mb-auto">
+        <div>
+          <h3 class="float-md-start mb-0">NLP Project</h3>
+        </div>
+      </header>
+
+      <main class="px-3">
+        <h1>Sentiment Analysis</h1>
+        <br />
+        <br />
+        <div class="container col-md-4 lead">
+          <h5>Enter Review Here</h5>
+          <br />
+          <form
+            action="/sentiment_analysis_prediction"
+            method="post"
+            enctype="multipart/form-data"
+          >
+            <textarea
+              name="text"
+              class="form-control"
+              placeholder="Text"
+              rows="4"
+              cols="50"
+            ></textarea>
+            <br />
+            <input type="submit" />
+          </form>
+        </div>
+        <br />
+        <div class="container">
+          {% if probability %}
+          <div>
+            <img src="{{ image }}" alt="Image" />
+            {% endif %}
+            <!-- <h2>{{response}}</h2> -->
+          </div>
+          <div></div>
+          <h4>Sentiment: {% if probability %} {{ sentiment }} {% endif %}</h4>
+          <h4>
+            Probability: {% if probability %} {{ probability }} {% endif %}
+          </h4>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
