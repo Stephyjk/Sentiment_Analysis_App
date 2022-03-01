@@ -15,11 +15,11 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = IMAGE_FOLDER
 
 
-def init():
-    global model, graph
-    # load the pre-trained Keras model
-    model = load_model('sentiment_analysis_model_new.h5')
-    # graph = tf.get_default_graph()
+# def init():
+#     global model, graph
+# load the pre-trained Keras model
+
+# graph = tf.get_default_graph()
 
 # Code for Sentiment Analysis
 
@@ -48,6 +48,7 @@ def sent_anly_prediction():
         x_test = sequence.pad_sequences(x_test, maxlen=500)
         vector = np.array([x_test.flatten()])
         # with graph.as_default():
+        model = load_model('sentiment_analysis_model_new.h5')
         probability = model.predict(array([vector][0]))[0][0]
         # class1 = model.predict_classes(array([vector][0]))[0][0]
         class1 = (model.predict(array([vector][0]))[
@@ -68,5 +69,5 @@ def sent_anly_prediction():
 
 
 if __name__ == "__main__":
-    init()
+    # init()
     app.run()
